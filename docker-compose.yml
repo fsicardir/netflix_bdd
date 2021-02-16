@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+        - ./stopwords.sql:/docker-entrypoint-initdb.d/00-stopwords.sql:ro
+        - ./layout.sql:/docker-entrypoint-initdb.d/01-layout.sql:ro
+        - ./triggers.sql:/docker-entrypoint-initdb.d/02-triggers.sql:ro
+        - ./procedures.sql:/docker-entrypoint-initdb.d/03-procedures.sql:ro
+        - ./initial_data.sql:/docker-entrypoint-initdb.d/04-initial_data.sql:ro
+        - ./indexes.sql:/docker-entrypoint-initdb.d/05-indexes.sql:ro
